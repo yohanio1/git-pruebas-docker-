@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  jest:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: test-container
+    volumes:
+      - ./JS_Examples/:/app/unit_test
+    command: npm test

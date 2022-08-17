@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  python:
+    build:
+      context: .      
+      dockerfile: Dockerfile
+    container_name: python-container
+    volumes:
+      - ./PY_Examples/:/usr/src/app
+    command: pytest -v /usr/src/app
+    
