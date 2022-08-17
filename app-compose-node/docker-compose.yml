@@ -6,5 +6,5 @@ services:
       dockerfile: Dockerfile
     container_name: test-container
     volumes:
-      - ./JS_Examples/:/app/unit_test
+      - ./JS_Examples/:/usr/share/unit_test
     command: npm test

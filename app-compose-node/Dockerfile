@@ -1,6 +1,6 @@
 
 FROM node:18-alpine3.15
-WORKDIR /app
-COPY package* .  
+WORKDIR /usr/share/
+COPY package* ./  
 RUN npm install 
 
