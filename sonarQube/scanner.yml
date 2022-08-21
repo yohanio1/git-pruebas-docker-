@@ -8,6 +8,6 @@ services:
     environment:
       - SONAR_HOST_URL="http://127.0.0.1:9000"
     volumes:
-      - /home/frank/Escritorio/projects/sonarQube/pyton-application:/usr/src
-      - /home/frank/Escritorio/projects/sonarQube/scanner/sonar-config:/opt/sonar-scanner/conf/
+      - ./pyton-application:/usr/src
+      - ./scanner/sonar-config:/opt/sonar-scanner/conf/
     
