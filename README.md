@@ -305,4 +305,62 @@ docker run image_name
 **Nota**: uno de los primeros proyectos que cree. Una mejora que se le podría hacer es crear un `docker-compose.yml` en el cual se creara un volumen donde se le pasara el archivo de la app de python y crear un `Dockerfile` que solo contuviera la instalación de python. De esta manera se haría una imagen más general y cada vez que se intentara ejecutar un script de python no se tuviera que crear su imagen.
 
 ## **sonarQube**
-Proyecto para desplegar la plataforma de código estático sonarQube para evaluar código fuente.
+Proyecto para desplegar la plataforma de código estático sonarQube para evaluar código fuente.  
+Este proyecto contiene dos archivos yml para los contenedores a crear `scanner.yml` y `sonar.yml`.  
+sonar
+```yaml
+version: '3.8'
+ 
+services:
+  sonarqube:
+    image: sonarqube:8-community
+    ports:
+      - "9000:9000"
+    volumes:
+      - sonarqube_conf:/opt/sonarqube/conf
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+volumes:
+  sonarqube_conf:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_bundled-plugins:
+```
+scanner
+```yaml
+version: '3.8'
+ 
+services:
+
+  scanner:
+    image: sonarsource/sonar-scanner-cli
+    network_mode: "host"
+    environment:
+      - SONAR_HOST_URL="http://127.0.0.1:9000"
+    volumes:
+      - ./pyton-application:/usr/src
+      - ./scanner/sonar-config:/opt/sonar-scanner/conf/
+```
+`sonar.yml` despliega el contenedor con la plataforma web de sonarQube en el puerto `9000`, y carga toda la información necesaria para desplegarlo en los volumenes.  
+`scanner.yml` despliega el contenedor con el scanner, en el cual se le pasa el archivo de configuración del escaner y la aplicaciones a la que se le va a realizar el escaneo.
+
+**configuración del escaner**
+```
+sonar.projectKey=name_project
+sonar.sources=. 
+sonar.host.url=http://localhost:9000 
+sonar.login=677bb790a734ca080e1c21a69c8023b503efc097
+sonar.python.coverage.reportPaths=/usr/src/coverage.xml
+```
+Luego se correran los dos archivos yml así:
+
+```bash
+docker-compose -f sonar.yml up -d 
+``` 
+y luego para ejecutar el escaner:
+```bash
+docker-compose -f scanner.yml up
+``` 
+
+
