@@ -1,0 +1,13 @@
+version: '3.8'
+ 
+services:
+
+  scanner:
+    image: sonarsource/sonar-scanner-cli
+    network_mode: "host"
+    environment:
+      - SONAR_HOST_URL="http://127.0.0.1:9000"
+    volumes:
+      - /home/frank/Escritorio/projects/sonarQube/pyton-application:/usr/src
+      - /home/frank/Escritorio/projects/sonarQube/scanner/sonar-config:/opt/sonar-scanner/conf/
+    
