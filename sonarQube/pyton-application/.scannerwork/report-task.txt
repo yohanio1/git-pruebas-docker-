@@ -1,6 +1,6 @@
-projectKey=x1234
+projectKey=x123x
 serverUrl=http://localhost:9000
 serverVersion=8.9.9.56886
-dashboardUrl=http://localhost:9000/dashboard?id=x1234
-ceTaskId=AYK9sbSB-qMZsh2IjodQ
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYK9sbSB-qMZsh2IjodQ
+dashboardUrl=http://localhost:9000/dashboard?id=x123x
+ceTaskId=AYK-1HY25esMPkHsFPoM
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYK-1HY25esMPkHsFPoM
