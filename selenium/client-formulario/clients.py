@@ -5,16 +5,23 @@ from selenium.webdriver.common.by import By
 import time, json
 
 driver = webdriver.Chrome(executable_path="C:\driver\chromedriver")
-with open("clients.json") as json_file:
+with open("./clients.json") as json_file:
     data = json.load(json_file)
-    driver.get("https://my.forms.app/form/6303956676ece330d75fe470")
-    name = driver.find_element(By.XPATH,"//*[@id='i-text-1']")
-    name.send_keys(1)
-    time.sleep(3)
-    driver.get("https://my.forms.app/form/6303956676ece330d75fe470")
-    name = driver.find_element(By.XPATH,"//*[@id='i-text-1']")
-    name.send_keys(1)
-    time.sleep(3)
+
+    for dato in data["clients"]:
+        driver.get("https://www.w3schools.com/html/html_forms.asp")
+        name = driver.find_element(By.XPATH,"//*[@id='fname']")
+        name.click()
+        name.clear()
+        name.send_keys(dato["name"])
+
+        name2= driver.find_element(By.XPATH,"//*[@id='lname']")
+        name2.click()
+        name2.clear()
+        name2.send_keys(dato["last_name"])
+        name2.send_keys(Keys.ENTER)
+
+        time.sleep(3)
 
 driver.close()
 
