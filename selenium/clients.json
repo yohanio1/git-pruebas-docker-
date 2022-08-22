@@ -1,0 +1,17 @@
+{
+    "clients":[
+        {
+            "name": "Juan",
+            "last_name": "Esteban"
+        },
+        {
+            "name": "Carlos",
+            "last_name": "Almanza"
+        },
+        {
+            "name": "Simon",
+            "last_name": "Rojas"
+        }
+    ]
+
+}
