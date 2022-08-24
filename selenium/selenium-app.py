@@ -74,7 +74,7 @@ class PythonOrgSearch(unittest.TestCase):
         driver.get("https://www.w3schools.com/howto/howto_custom_select.asp")
         select = driver.find_element(By.XPATH,"//*[@id='main']/div[3]/div[1]/select")
         options = select.find_elements(By.TAG_NAME,"option")
-
+                                                                            
         for option in options:
             print(option.get_attribute("value"))
 
@@ -82,7 +82,5 @@ class PythonOrgSearch(unittest.TestCase):
         seleccionar.select_by_value("2")
 
 
-        
-        
 if __name__ == "__main__":
     unittest.main()
