@@ -17,7 +17,7 @@ driver = webdriver.Chrome(executable_path="C:\driver\chromedriver")
 # Dar enter
 driver.get("https://www.mercadolibre.com.co")
 search = driver.find_element(By.ID, "cb1-edit")
-search.send_keys("Disco duro")
+search.send_keys("Ps4")
 search.send_keys(Keys.ENTER)
 
 # Buscar la lista no ordenada <ol> con el nombre de los productos 

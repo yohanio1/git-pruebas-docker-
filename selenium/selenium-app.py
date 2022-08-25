@@ -1,6 +1,7 @@
 from lib2to3.pgen2 import driver
 import time
 import unittest
+from typing_extensions import Self
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys

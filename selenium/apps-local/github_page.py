@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 import time, json
 
 
-driver = webdriver.Chrome(executable_path="C:\driver\chromedriver")
+driver = webdriver.Edge(executable_path="C:\driver\msedgedriver")
 
 driver.get("https://github.com/")
 
