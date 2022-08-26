@@ -494,5 +494,5 @@ driver.close()
 ### **`apps-local`**
 `github_page.py` es un script de python, el cual pretende automatizar el ingreso a la cuenta de github para copiar la dirección de este repositorio.  
 `mercado_libre_data.py`, es un script con el cual se automatiza la búsqueda de un producto en mercadolibre, y de esta lista de productos, se almacena en un archivo json (`datos_json.json`), los precios y el nombre del producto.  
-`python_page.py` es un script, que automatiza el proceso de buscar en google python, entrar a la página, y utilizando la búsqueda de términos por `LINK_TEXT`, entrar a la sección de `Docs`, y luego entrar a `What's new in Python 3.10?`. 
+`python_page.py` es un script, que automatiza el proceso de buscar en google python, entrar a la página, y utilizando la búsqueda de términos por `LINK_TEXT`, entrar a la sección de `Docs`, y luego entrar a `What's new in Python 3.10?`.   
 `seleniumplayground_form.py`es un script, el cual contiene varios ejercicios sacados de la página de **seleniumplayground**  
