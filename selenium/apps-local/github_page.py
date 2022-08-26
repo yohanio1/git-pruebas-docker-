@@ -7,12 +7,9 @@ import time, json
 
 
 driver = webdriver.Edge(executable_path="C:\driver\msedgedriver")
-
 driver.get("https://github.com/")
-
 driver.find_element(By.XPATH,"/html/body/div[1]/header/div/div[2]/div[2]/div[2]/a").click()
 time.sleep(3)
-
 user = driver.find_element(By.XPATH,"//*[@id='login_field']")
 user.send_keys("yohanio1")
 password = driver.find_element(By.XPATH,"//*[@id='password']")

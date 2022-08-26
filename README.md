@@ -8,7 +8,7 @@ Es una aplicación simple, la cual parte de una imagen base de ubuntu:18.04 para
 FROM ubuntu:18.04
 ENTRYPOINT ["/bin/echo"] 
 CMD ["Hola from ubuntu"]
-}
+
 ```
 ```bash
   docker build -t image_name .
@@ -362,5 +362,137 @@ y luego para ejecutar el escaner:
 ```bash
 docker-compose -f scanner.yml up
 ``` 
+## **Selenium**
 
+### `selenium-app.py`  
 
+Aplicacion utilizando el módulo de unittest para desarrollar diferentes test.  
+La lógica de este programa sería:  
+* Ejecuta la función `setUp`
+* Ejecuta el primer test `test_search_in_python_org`
+* Ejecuta la función `tearDown`
+* Vuelve a la función `setUp`
+* Ejecuta el siguiente test `test_search_in_xchrome`  
+* Ejecuta la función `tearDown`
+
+Este ciclo se repite hasta que se termine la totalidad de los test.  
+#### **tests**
+```python
+def test_search_in_python_org(self):
+    driver = self.driver
+    driver.get("http://www.python.org")
+    self.assertIn("Python", driver.title)
+```
+Este test consiste en entrar a la página oficial de python y verificar que el título de la página corresponde con `Python`
+```python
+def test_search_in_xchrome(self):   
+    driver = self.driver
+    driver.get("http://www.google.com.co")
+    elem = driver.find_element(By.NAME,"q")
+    elem.send_keys("Hola esto es una prueba")
+    elem.send_keys(Keys.RETURN)
+    self.assertIn("Ver todos", driver.page_source)
+```
+Este test consiste en entrar al buscador de google y escribir en él, el texto `Hola esto es una prueba`, darle buscar y verificar que en la fuente de la página se encuentra la palabra `Ver todos`
+
+```python
+def test_search_by_xpath(self):   
+    driver = self.driver
+    driver.get("http://www.google.com.co")
+    elem = driver.find_element(By.XPATH,"/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input")
+    elem.send_keys("Hola esto es una prueba")
+    elem.send_keys(Keys.RETURN)
+    self.assertIn("Ver todos", driver.page_source)
+```
+Utilizando la opción de la búsqueda con XPATH, se realiza el mismo test descripto anteriormente.
+```python
+def test_change_window(self):   
+    driver = self.driver
+    driver.get("http://www.google.com.co")
+    driver.execute_script("window.open('');")
+    driver.switch_to.window(driver.window_handles[1])
+    driver.get("https://accounts.google.com")
+    elem = driver.find_element(By.XPATH,"//*[@id='identifierId']")
+    elem.send_keys("juane.acevedoc@gmail.com")
+    elem.send_keys(Keys.RETURN)
+    time.sleep(3)
+```
+Este test consiste en entrar a la página de Google, abrir otra ventana, cambiar de ventana, entrar a la dirección de gmail, y introducir el correo electrónico.
+
+```python
+def test_back_forward(self):   
+    driver = self.driver
+    driver.get("http://www.google.com.co")
+    time.sleep(3)
+    driver.get("https://www.youtube.com")
+    time.sleep(3)
+    driver.back()
+```
+Este test consiste en entrar a Google, esperar, entrar a youtube, esperar y volver a la página anterior (Google).
+```python
+def test_toggle_click(self):   
+    driver = self.driver
+    driver.get("https://www.w3schools.com/howto/howto_css_switch.asp")
+    select = driver.find_element(By.XPATH,"//*[@id='main']/label[3]/div")
+    select.click()
+    time.sleep(3)
+    select.click()
+    time.sleep(3)
+```
+Este test consiste en entrar a la página de w3school en la clase de toogles y probar la función de click.
+```python
+def test_select_list(self):   
+    driver = self.driver
+    driver.get("https://www.w3schools.com/howto/howto_custom_select.asp")
+    select = driver.find_element(By.XPATH,"//*[@id='main']/div[3]/div[1]/select")
+    options = select.find_elements(By.TAG_NAME,"option")                                                                   
+    for option in options:
+        print(option.get_attribute("value"))
+
+    seleccionar = Select(driver.find_element(By.XPATH,"//*[@id='main']/div[3]/div[1]/select"))
+    seleccionar.select_by_value("2")
+```
+Este test consiste en entrar en la página de w3school en la sección de custom select, para probar la exploración de una lista de selección.
+
+### **`seleniumIDE_pruebas`**
+Esta carpeta contiene dos scripts de python, que ejecutan la misma funcionalidad.  
+En términos simples ambos scripts automatizan el llenado de un formulario de la página <https://www.tutorialspoint.com/selenium/selenium_automation_practice.htm>.  
+Por una parte, uno `test_test1.py`, lo hace mediante el script generado por SeleniumIDE (Una extensión de los navegadores).  
+El otro `form.py` aplicando mi lógica.  
+
+### **`client-formulario`**
+`clients.py` es un script de python que automatiza el proceso de paso de información almacenado en un archivo.json (`clients.json`), hacia un form en w3school <https://www.w3schools.com/html/html_forms.asp>.  
+
+```python
+from unicodedata import name
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+import time, json
+
+driver = webdriver.Chrome(executable_path="C:\driver\chromedriver")
+with open("./clients.json") as json_file:
+    data = json.load(json_file)
+
+    for dato in data["clients"]:
+        driver.get("https://www.w3schools.com/html/html_forms.asp")
+        name = driver.find_element(By.XPATH,"//*[@id='fname']")
+        name.click()
+        name.clear()
+        name.send_keys(dato["name"])
+
+        name2= driver.find_element(By.XPATH,"//*[@id='lname']")
+        name2.click()
+        name2.clear()
+        name2.send_keys(dato["last_name"])
+        name2.send_keys(Keys.ENTER)
+
+        time.sleep(3)
+
+driver.close()
+```
+### **`apps-local`**
+`github_page.py` es un script de python, el cual pretende automatizar el ingreso a la cuenta de github para copiar la dirección de este repositorio.  
+`mercado_libre_data.py`, es un script con el cual se automatiza la búsqueda de un producto en mercadolibre, y de esta lista de productos, se almacena en un archivo json (`datos_json.json`), los precios y el nombre del producto.  
+`python_page.py` es un script, que automatiza el proceso de buscar en google python, entrar a la página, y utilizando la búsqueda de términos por `LINK_TEXT`, entrar a la sección de `Docs`, y luego entrar a `What's new in Python 3.10?`. 
+`seleniumplayground_form.py`es un script, el cual contiene varios ejercicios sacados de la página de **seleniumplayground**  
