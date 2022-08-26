@@ -30,24 +30,24 @@ class PythonOrgSearch(unittest.TestCase):
 # - Close the Browser.
 
 
-# driver = webdriver.Chrome(executable_path="C:\driver\chromedriver")
+    def test_exercise1(self):
+        driver = self.driver
 
-# driver.maximize_window()
-# driver.get("http://qatechhub.com")
-# get_title = driver.title
+        driver.maximize_window()
+        driver.get("http://qatechhub.com")
+        get_title = driver.title
 
-# if get_title == "QA Automation Tools Trainings and Tutorials | QA Tech Hub":
-#     print("PASS")
-# else:
-#     print("FAIL")
+        if get_title == "QA Automation Tools Trainings and Tutorials | QA Tech Hub":
+            print("PASS")
+        else:
+            print("FAIL")
 
-# driver.execute_script("window.open('https://www.facebook.com');")
-# driver.switch_to.window(driver.window_handles[1])
-# print(driver.current_url)
-# time.sleep(5)
-# driver.refresh()
-# time.sleep(5)
-# driver.quit()
+        driver.execute_script("window.open('https://www.facebook.com');")
+        driver.switch_to.window(driver.window_handles[1])
+        print(driver.current_url)
+        time.sleep(5)
+        driver.refresh()
+        time.sleep(5)
 
 # Exercise 2
 
@@ -62,42 +62,29 @@ class PythonOrgSearch(unittest.TestCase):
 # Write a method to print all products along with scroll down.
 
 
-    # def test_exercise2(self):
-    #     driver = self.driver
-    #     driver.get("https://www.ebay.com")
-    #     search = driver.find_element(By.XPATH,"//*[@id='gh-ac']")
-    #     search.send_keys("moto")
+    def test_exercise2(self):
+        driver = self.driver
+        driver.get("https://www.ebay.com")
+        search = driver.find_element(By.XPATH,"//*[@id='gh-ac']")
+        search.send_keys("moto")
         
-    #     select = driver.find_element(By.XPATH,"/html/body/header/table/tbody/tr/td[3] \
-    #     /form/table/tbody/tr/td[2]/div/select")
+        select = driver.find_element(By.XPATH,"/html/body/header/table/tbody/tr/td[3] \
+        /form/table/tbody/tr/td[2]/div/select")
 
-    #     options = select.find_elements(By.TAG_NAME,"option")
-    #     options[17].click()
+        options = select.find_elements(By.TAG_NAME,"option")
+        options[17].click()
         
-    #     driver.find_element(By.XPATH,"/html/body/header/table/tbody/tr/td[3] \
-    #     /form/table/tbody/tr/td[3]/input").click()
+        driver.find_element(By.XPATH,"/html/body/header/table/tbody/tr/td[3] \
+        /form/table/tbody/tr/td[3]/input").click()
 
-    #     search_producto = driver.find_element(By.XPATH,"/html/body/div[5]/div[4]/div[2]/div[1]/div[2]/ul")
-    #     producto = search_producto.find_elements(By.TAG_NAME,"li")
-
-    #     # cont = 0
-
-    #     # for product in producto:
-    #     #     cont = cont + 1
-
-    #     # print(cont)
-    #     scroll_init= 0
-    #     scroll_final = 200
+        scroll_init= 0
+        scroll_final = 200
         
-        
-    #     for i in range(60):
-    #         producto_unico = producto[i].find_element(By.TAG_NAME,"h3").text
-    #         driver.execute_script(f"window.scrollTo({scroll_init},{scroll_final} );")
-    #         time.sleep(1)
-    #         scroll_init = scroll_final
-    #         scroll_final = scroll_final + 250
-    #         print(producto_unico)
-
+        for i in range(10):
+            driver.execute_script(f"window.scrollTo({scroll_init},{scroll_final} );")
+            scroll_init = scroll_final
+            scroll_final = scroll_final + 250
+            time.sleep(1)
 
 
     # exercise 3
@@ -121,9 +108,10 @@ class PythonOrgSearch(unittest.TestCase):
         select = driver.find_element(By.XPATH,"//*[@id='contact-form']/p[3]/label/select")
         options = select.find_elements(By.TAG_NAME,"option")
         options[4].click()
-        
-
-        time.sleep(20)
+        driver.find_element(By.CSS_SELECTOR,"p:nth-child(5) > label > input[type=file]").send_keys("C:\\Users\\juane\\Downloads\\Image_created_with_a_mobile_phone.png")
+        driver.find_element(By.CSS_SELECTOR,"p:nth-child(6) > label > textarea").send_keys("Exitos")
+        driver.find_element(By.XPATH,"//*[@id='contact-form']/p[6]/button").click()
+        time.sleep(5)
 
 if __name__ == "__main__":
     unittest.main()
