@@ -496,3 +496,64 @@ driver.close()
 `mercado_libre_data.py`, es un script con el cual se automatiza la búsqueda de un producto en mercadolibre, y de esta lista de productos, se almacena en un archivo json (`datos_json.json`), los precios y el nombre del producto.  
 `python_page.py` es un script, que automatiza el proceso de buscar en google python, entrar a la página, y utilizando la búsqueda de términos por `LINK_TEXT`, entrar a la sección de `Docs`, y luego entrar a `What's new in Python 3.10?`. 
 `seleniumplayground_form.py`es un script, el cual contiene varios ejercicios sacados de la página de **seleniumplayground**  
+
+### **`sonar`**
+`automate_creation_sonar.py` es un script, con el cual se automatiza la creación de un proyecto en la plataforma de sonarQube.
+```python
+def create_test(project_key,key):
+    driver = webdriver.Chrome(executable_path="C:\driver\chromedriver")
+    driver.get("http://localhost:9000/sessions/new?return_to=%2F")
+    driver.set_window_size(1050, 700)
+    driver.find_element(By.ID, "login").send_keys("admin")
+    driver.find_element(By.ID, "password").send_keys("Juanest31")
+    driver.find_element(By.CSS_SELECTOR, ".button").click()
+    time.sleep(1)
+    driver.find_element(By.CSS_SELECTOR, "div > button").click()
+    driver.find_element(By.XPATH," //*[@id='projects-page']/div[2]/div/div[1]/div/div/div/div[1]/div[2]/div/div/ul/li/a").click()
+    time.sleep(1)
+    driver.find_element(By.CSS_SELECTOR, "#project-key").send_keys(project_key)
+    driver.find_element(By.CSS_SELECTOR, "#create-project > div > div > form > button").click()
+    time.sleep(1)
+    driver.find_element(By.CSS_SELECTOR, "div:nth-child(3) > div > div:nth-child(1) > div:nth-child(1) > div > form > input").send_keys(key)
+    driver.find_element(By.CSS_SELECTOR,"div:nth-child(3) > div > div:nth-child(1) > div:nth-child(1) > div > form > button").click()
+    time.sleep(1)
+    driver.find_element(By.CSS_SELECTOR,"div:nth-child(3) > div > div:nth-child(3) > button").click()
+    time.sleep(1)
+    driver.find_element(By.CSS_SELECTOR,"div:nth-child(3) > div > div > div:nth-child(1) > ul > li:nth-child(4) > label").click()
+    time.sleep(1)
+    driver.find_element(By.CSS_SELECTOR,"div:nth-child(3) > div > div > div.big-spacer-top > ul > li:nth-child(2) > label").click()
+    time.sleep(1)
+    clave = driver.find_element(By.XPATH,"//*[@id='container']/div/div/div/div[3]/div[3]/div/div/div[3]/div/div[2]/div/button")
+    data = str(clave.get_attribute("data-clipboard-text")).split("-D")
+    driver.close()
+    return data
+
+```
+Esta función se encarga de realizar toda la parametrización inicial que se necesita para configurar el proyecto, y devuelve la data, que no es más que la información que se debe adjuntar el archivo de configuraciones del sonar scanner.  
+```python
+def create_txt(data,key):
+    with open("test.txt",'a',encoding = 'utf-8') as file:
+        for dato in data:
+            file.write(dato.strip('"') + "\n")
+        file.write("Key:" + key + "\n")
+```
+Con las datos previamente recolectados, se genera un archivo que contiene toda esta configuración.  example
+
+```
+sonar-scanner.bat 
+sonar.projectKey=XM_PROJECT_JAVA" 
+sonar.sources=." 
+sonar.host.url=http://localhost:9000" 
+sonar.login=e04f45a44cc5429b3bce6193ec730816473f2208
+Key:SECRET4
+
+```
+
+```python
+project_key = "XM_PROJECT_JAVASCRIPT"
+key = "SECRET1"
+
+data = create_test(project_key,key)
+create_txt(data,key)
+```
+main principal.
