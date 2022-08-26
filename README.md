@@ -187,7 +187,7 @@ Se mapean los puertos de los contenedores.
 Y se crean los volumenes locales para almacenar la información de la base de datos.  
 El archivo python contendría la siguiente información:
 ```python
-  import mysql.connector
+import mysql.connector
 import json
 from flask import Flask
 

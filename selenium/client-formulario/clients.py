@@ -24,25 +24,3 @@ with open("./clients.json") as json_file:
         time.sleep(3)
 
 driver.close()
-
-        
-
-# name = driver.find_element(By.XPATH,"//*[@id='i-text-1']")
-# last_name = driver.find_element(By.XPATH,"//*[@id='i-text-2']")
-# name.send_keys("Juan")
-# last_name.send_keys("Acevedo")
-# time.sleep(3)
-# driver.close()
-
-# with open("clients.json") as json_file:
-#     data = json.load(json_file)
-
-#     for dato in data["clients"]:
-#         print("Escribiendo datos de + " + dato["name"])
-#         driver.get("https://www.google.com.co")
-#         name = driver.find_element(By.XPATH,"//*[@id='i-text-1']")
-#         last_name = driver.find_element(By.XPATH,"//*[@id='i-text-2']")
-#         # name.send_keys(dato["name"])
-#         # last_name.send_keys(dato["last_name"])
-#         time.sleep(3)
-        
