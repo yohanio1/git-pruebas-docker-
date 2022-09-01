@@ -4,7 +4,17 @@
   "description": "jest test",
   "main": "examples.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest  --collectCoverage=true"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 95,
+        "functions": 85,
+        "lines": 85,
+        "statements": 85
+      }
+    }
   },
   "keywords": [
     "jest",

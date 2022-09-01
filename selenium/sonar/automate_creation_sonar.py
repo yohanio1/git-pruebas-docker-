@@ -39,15 +39,15 @@ def create_test(project_key,key):
     return data
 
 def create_txt(data,key):
-    with open("selenium\\sonar\\test.txt",'a',encoding = 'utf-8') as file:
+    with open("selenium\\sonar\\test.txt",'w',encoding = 'utf-8') as file:
         for dato in data:
             file.write(dato.strip('"') + "\n")
         file.write("Key:" + key + "\n")
 
 
 #................................. Main ...................................................................
-project_key = "XM_PROJECT_JAVA"
-key = "SECRET4"
+project_key = "XM_PROJECT_WITH_SELENIUM4"
+key = "SECRETO3"
 
 data = create_test(project_key,key)
 create_txt(data,key)

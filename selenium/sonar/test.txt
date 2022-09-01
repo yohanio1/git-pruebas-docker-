@@ -1,6 +1,6 @@
 sonar-scanner.bat 
-sonar.projectKey=XM_PROJECT_JAVA" 
+sonar.projectKey=XM_PROJECT_WITH_SELENIUM4" 
 sonar.sources=." 
 sonar.host.url=http://localhost:9000" 
-sonar.login=e04f45a44cc5429b3bce6193ec730816473f2208
-Key:SECRET4
+sonar.login=49d43e1976605e20f1b9634b670bc9315ac51b80
+Key:SECRETO3

@@ -1,6 +1,6 @@
-projectKey=x123x
+projectKey=XM_PROJECT_WITH_SELENIUM4
 serverUrl=http://localhost:9000
 serverVersion=8.9.9.56886
-dashboardUrl=http://localhost:9000/dashboard?id=x123x
-ceTaskId=AYK-1HY25esMPkHsFPoM
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYK-1HY25esMPkHsFPoM
+dashboardUrl=http://localhost:9000/dashboard?id=XM_PROJECT_WITH_SELENIUM4
+ceTaskId=AYLrOXnu-4AL9UT-kX31
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYLrOXnu-4AL9UT-kX31

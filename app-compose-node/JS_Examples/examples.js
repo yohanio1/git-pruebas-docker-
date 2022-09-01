@@ -40,13 +40,13 @@ const recortar = (cadena,numCaracteres) =>{
 4) Programa una función que repita un texto X veces, 
 pe. miFuncion('Hola Mundo',3) devolverá Hola Mundo Hola Mundo Hola Mundo.*/
 
-const repet = (cadena,n) =>{
+// const repet = (cadena,n) =>{
 
-  for (let i = 0 ; i < n; i++){
-      console.info(`${cadena}, ${i}`);
-  }
+//   for (let i = 0 ; i < n; i++){
+//       console.info(`${cadena}, ${i}`);
+//   }
 
-}
+// }
 
 
 // 5) Programa una función que invierta las palabras de una cadena de texto,
@@ -67,53 +67,53 @@ const inverse = (cadena = null) =>{
 // el primero tendrá los numeros ordenados en forma ascendente y el segundo de forma descendiente,
 //  pe. miFuncion([7,5,7,8,6]) devolverá { asc: [5,6,7,7,8], desc: [8,7,7,6,5] }.
 
-const ascDesc = (arr) =>{
+// const ascDesc = (arr) =>{
 
-  const orden  = {
-    asc: arr.map(el => el).sort(),
-    des: arr.map(el => el).sort().reverse()
-  }
+//   const orden  = {
+//     asc: arr.map(el => el).sort(),
+//     des: arr.map(el => el).sort().reverse()
+//   }
   
-  return orden;
+//   return orden;
 
-}
-// 25) Programa una función que dado un arreglo de elementos, elimine los duplicados,
-//  pe. miFuncion(["x", 10, "x", 2, "10", 10, true, true]) devolverá ["x", 10, 2, "10", true].
+// }
+// // 25) Programa una función que dado un arreglo de elementos, elimine los duplicados,
+// //  pe. miFuncion(["x", 10, "x", 2, "10", 10, true, true]) devolverá ["x", 10, 2, "10", true].
 
-//my way
-
-
-const duplicado = (data)=>{
-
-  let uniqueArr = [];
-  data.forEach((item)=>{
-    //pushes only unique element
-      if(!uniqueArr.includes(item)){
-      uniqueArr.push(item);
-    }
-  })
-  return uniqueArr;
-}
+// //my way
 
 
+// const duplicado = (data)=>{
 
-// 26) Programa una función que dado un arreglo de números obtenga el promedio,
-//  pe. promedio([9,8,7,6,5,4,3,2,1,0]) devolverá 4.5.
+//   let uniqueArr = [];
+//   data.forEach((item)=>{
+//     //pushes only unique element
+//       if(!uniqueArr.includes(item)){
+//       uniqueArr.push(item);
+//     }
+//   })
+//   return uniqueArr;
+// }
 
 
-const promedio = (data) =>{
+
+// // 26) Programa una función que dado un arreglo de números obtenga el promedio,
+// //  pe. promedio([9,8,7,6,5,4,3,2,1,0]) devolverá 4.5.
+
+
+// const promedio = (data) =>{
   
-  let sumatoria = 0;
-  let promedio;
+//   let sumatoria = 0;
+//   let promedio;
 
-  data.forEach(element => {
-      sumatoria += element; 
-  });
+//   data.forEach(element => {
+//       sumatoria += element; 
+//   });
 
-  promedio = sumatoria/data.length;
+//   promedio = sumatoria/data.length;
 
-  return promedio;
-}
+//   return promedio;
+// }
 
 //Exportación de Módulos
 
