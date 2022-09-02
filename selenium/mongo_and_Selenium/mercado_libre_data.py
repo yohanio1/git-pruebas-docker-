@@ -63,11 +63,18 @@ for i in range (cont_prodcuts):
 #         json.dump(data, archivo_json, indent=4)
 
 def connect_mongo(webs):
-
-    client = pymongo.MongoClient('mongodb://root:example@localhost:27017/')
+    data_list = []
+    host = "localhost"
+    user = "root"
+    password = "example"
+    port = 27017
+    client = pymongo.MongoClient('mongodb://%s:%s@%s:%s/' % (user,password,host,port))
     mydb = client["web_page"]
     mycol = mydb["client"]
     mycol.insert_many(webs)
+    for documents in mycol.find():
+        data_list.append(documents)
+
 
 connect_mongo(data)
 
