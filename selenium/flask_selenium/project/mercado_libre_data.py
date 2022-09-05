@@ -1,5 +1,7 @@
 from gettext import find
 from msilib.schema import AdminExecuteSequence
+from multiprocessing import connection
+from tkinter.tix import Tree
 from unicodedata import name
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -10,6 +12,7 @@ import numpy as np
 import time, json
 from platform import python_branch
 import pymongo
+from pymongo import errors
 
 articles = []
 prices = []
@@ -42,7 +45,7 @@ def get_data():
         prices.append(price)
         url.append(url_product)
     
-    for i in range (6):
+    for i in range (cont_prodcuts):
         data.append({
 
                 "producto" : str(articles[i]),
@@ -55,18 +58,27 @@ def get_data():
     driver.close()
     return data
 
+def connect_mongo(uri):
 
-def connect_mongo(webs):
-    client = pymongo.MongoClient(host='localhost',
-                         port=27017, 
-                         username='root', 
-                         password='pass',
-                        authSource="admin")
-    db = client["web_page"]
+    connect = pymongo.MongoClient(uri)
+
+    try:
+        connect.web_page.command('ping')
+        return connect
+    except errors.ConnectionFailure:
+        print("Server not available")
+        return False
+    
+
+def insert_data(webs,connection):
+
+    db = connection["web_page"]
     collection = db["clients"]
     collection.insert_many(webs)
 
 
-data = get_data()
-connect_mongo(data)
+uri = "mongodb://root:pass@localhost:27017"
+webs = get_data()
+conection = connect_mongo(uri)
+insert_data(webs,conection)
 
