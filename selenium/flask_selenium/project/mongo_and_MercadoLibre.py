@@ -81,12 +81,16 @@ def delete_data(connection):
     db = connection["web_page"]
     collection = db["clients"]
     collection.drop()
+    res = collection.find()
+    return res
 
+    # print(res)
 
 uri = "mongodb://root:pass@localhost:27017"
-find_product = "PS4"
-webs = get_data(find_product)
+# print(connect_mongo(uri))
+# find_product = "PS4"
+# webs = get_data(find_product)
 conection = connect_mongo(uri)
 delete_data(conection)
-insert_data(webs,conection)
+# insert_data(webs,conection)
 
