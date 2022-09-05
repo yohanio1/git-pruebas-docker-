@@ -76,10 +76,17 @@ def insert_data(webs,connection):
     collection = db["clients"]
     collection.insert_many(webs)
 
+def delete_data(connection):
+
+    db = connection["web_page"]
+    collection = db["clients"]
+    collection.drop()
+
 
 uri = "mongodb://root:pass@localhost:27017"
-find_product = "Disco duro de estado sólido"
+find_product = "PS4"
 webs = get_data(find_product)
 conection = connect_mongo(uri)
+delete_data(conection)
 insert_data(webs,conection)
 

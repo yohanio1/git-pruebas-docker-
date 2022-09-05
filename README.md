@@ -629,3 +629,13 @@ def insert_data(webs,connection):
     collection = db["clients"]
     collection.insert_many(webs)
 ```
+
+`delete_data(connection)`: esta función se encarga de hacer un drop a la collection seleccionada.
+
+```python
+def delete_data(connection):
+
+    db = connection["web_page"]
+    collection = db["clients"]
+    collection.drop()
+```
