@@ -19,12 +19,12 @@ prices = []
 url = []
 data = []
 
-def get_data():
+def get_data(find_product):
 
     driver = webdriver.Chrome(executable_path="C:\driver\chromedriver")
     driver.get("https://www.mercadolibre.com.co")
     search = driver.find_element(By.ID, "cb1-edit")
-    search.send_keys("Disco duro estado sólido")
+    search.send_keys(find_product)
     search.send_keys(Keys.ENTER)
 
     ol = driver.find_element(By.XPATH,"//*[@id='root-app']/div/div[2]/section/ol")
@@ -78,7 +78,8 @@ def insert_data(webs,connection):
 
 
 uri = "mongodb://root:pass@localhost:27017"
-webs = get_data()
+find_product = "Disco duro de estado sólido"
+webs = get_data(find_product)
 conection = connect_mongo(uri)
 insert_data(webs,conection)
 
